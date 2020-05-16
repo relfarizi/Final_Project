@@ -60,6 +60,7 @@ def generateOffspring(population) :
 
     def crossover(parent,pCo = 0.5) :
         randCo = rd.random()
+        print(randCo)
         parent1,parent2 = parent
         nPoint = 0.5
         barier =(math.floor(len(population[0])*nPoint))
@@ -72,6 +73,24 @@ def generateOffspring(population) :
             offspring2 = parent2[:barier]+parent1[barier:]
 
         return [offspring1,offspring2]
+
+   # Flip mutation 
+    def mutation(offSpring,pMut = 0.2) :
+        randMut = rd.uniform(0,1)
+        print(randMut)
+        newOffspring = []
+        if randMut > pMut :
+            for bit in offSpring :
+                if bit == 1 :
+                    newBit = 1
+                else :
+                    newBit = 0
+                newOffspring.append(newBit)
+            offSpring = newOffspring
+        return offSpring
+
+
+
     
     # Start Generate
     solution = []
@@ -80,7 +99,7 @@ def generateOffspring(population) :
         #print(parents)
         offSpring = crossover(parents)
         for x in offSpring :
-            solution.append(x)
+            solution.append(mutation(x))
     return solution
 
 print(len(generateOffspring(population)))
