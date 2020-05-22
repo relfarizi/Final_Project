@@ -62,9 +62,14 @@ def generateOffspring(population) :
         randCo = rd.random()
         print(randCo)
         parent1,parent2 = parent
+        parent1.sort(reverse=True)
+        parent2.sort(reverse=True)
+        print(parent1)
+        nGen = sum(parent1)
         nPoint = 0.5
-        barier =(math.floor(len(population[0])*nPoint))
-
+        #barier =(math.floor(len(population[0])*nPoint))
+        barier = math.floor(nGen*nPoint) 
+        end = nGen
         if randCo > pCo :
             offspring1 = parent1[:barier]+parent2[barier:]
             offspring2 = parent2[:barier]+parent1[barier:]
@@ -102,7 +107,17 @@ def generateOffspring(population) :
             solution.append(mutation(x))
     return solution
 
-print(len(generateOffspring(population)))
+#print((generateOffspring(population)))
+
+lc = [1,2,3,4,5]
+lb = [2,3,4]
+
+z = set(lc) - set(lb)
+
+print(list(z))
+
+
+
 
 
 
